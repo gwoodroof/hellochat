@@ -1,0 +1,15 @@
+{
+   "name":"chat-gwoodroof",
+   "description":"Simple chat server built on MEAN stack",
+   "version": "0.0.1",
+   "author": "GW",
+   "dependancies": {
+      "express":"~4.4.1",
+      "request":"~2.36.1",
+      "mongodb":"*",
+      "socket.io":"1.0"
+   },
+   "maybe_laters":{
+      "mongodb":"1.4.6"
+   }
+}

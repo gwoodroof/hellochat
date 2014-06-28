@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="chat">
+<head>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body ng-controller="ChatController">
+  <h1 id="title">Hello Chat!</h1>
+  <p id="subtitle">Built on the MEAN stack + socket.io</p>
+  <div id="chatters-box">
+    <ul>
+      <li class="chatter" ng-repeat="member in members track by $index">{{member}}</li>
+    </ul>
+  </div>
+  <div id="chat-box">
+    <div id="messages-box">
+      <ul>
+        <li class="message" ng-repeat="chat in chats track by $index">
+          <span>{{chat.handle + ": "}}</span>
+          <span>{{chat.msg}}</span>
+        </li>
+        <li class="message message-draft" ng-show="draft.msg">
+          <span>{{member + ": "}}</span>
+          <span>{{draft.msg}}</span>
+        </li>
+      </ul>
+    </div>
+    <form id="the-form" ng-submit="sendChat(draft)">
+      <input id="input" type="text" placeholder="Type here and hit [enter]" ng-model="draft.msg">
+    </form>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
