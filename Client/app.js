@@ -1,6 +1,6 @@
 var username = prompt("Please enter your name");
-//var server = io.connect('54.187.58.209:8080'); //PRODUCTION
-var server = io.connect('http://localhost:8080') //TESTING local
+//var server = io.connect('107.170.207.4:3000'); //PRODUCTION
+var server = io.connect('http://localhost:3000') //TESTING local
 
 if (username){
   console.log("username: " + username);
