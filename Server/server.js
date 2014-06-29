@@ -45,30 +45,31 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
             client.emit('welcome', {members: memberList, chats: chatList});
             var chat = {handle:"server",msg:handle + " just joined."};
             console.log(chat);
-            chatCollection.insert({handle:chat.handle, msg:chat.msg}, function(err, docs){
-              if(err) throw err;
-              io.emit('add-member', handle);
-              io.emit('message', chat);
-            });
+            doMessage(chat);
+            io.emit('add-member', handle);
           });
         });
       });
     });
     
-    client.on('message', function(chat){
-      console.log(chat);
+    var doMessage = function(chat){
       chatCollection.insert({handle:chat.handle, msg:chat.msg}, function(err, docs){
         if(err) throw err;
         io.emit('message', chat);
       });
+    }
+    
+    client.on('message', function(chat){
+      console.log(chat);
+      doMessage(chat);
     });
     
     client.on('disconnect', function(){
-      var chat = {handle:handle,msg:" just left."};
+      var chat = {handle:"server",msg: handle + " just left."};
       console.log(chat);
+      doMessage(chat);
       memberCollection.remove({name:handle}, function(err, numRemoved){
         console.log("documents removed: " + numRemoved);
-        client.broadcast.emit('message', chat);
         client.broadcast.emit('remove-member', handle);
       });
     });
