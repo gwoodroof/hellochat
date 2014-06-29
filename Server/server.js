@@ -10,7 +10,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   console.log("connected to mongodb!");
 
   var memberCollection = db.collection('members');
-  var chatCollection = db.collection('chats');
+  var chatCollection = db.collection('chats',{ capped : true, size : 20000, max : 3 });
   
   io.on('connection', function(client){
     console.log('client connected!');
