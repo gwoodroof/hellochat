@@ -51,9 +51,11 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
     client.on('disconnect', function(){
       var chat = {handle:handle,msg:" just left."};
       console.log(chat);
-      memberCollection.remove({name:handle});
-      client.broadcast.emit('message', chat);
-      client.broadcast.emit('remove-member', handle);
+      memberCollection.remove({name:handle}, function(err, numRemoved){
+        console.log("documents removed: " + numRemoved);
+        client.broadcast.emit('message', chat);
+        client.broadcast.emit('remove-member', handle);
+      });
     });
   });
 });
