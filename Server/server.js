@@ -8,7 +8,7 @@ var port = 3000;
 var config = {
 //    "USER"    : "",
 //    "PASS"    : "",
-    "HOST"    : "12.0.0.1",
+    "HOST"    : "127.0.0.1",
     "PORT"    : "27017",
     "DATABASE" : "db"
 };
@@ -20,7 +20,7 @@ var dbPath  = "mongodb://" +
     config.PORT + "/"+ 
     config.DATABASE;
 
-MongoClient.connect('mongodb://12.0.0.1/db', function(err, db){
+MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   if(err) throw err;
   console.log("connected to mongodb!");
 
