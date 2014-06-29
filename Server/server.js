@@ -9,21 +9,21 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   if(err) throw err;
   console.log("connected to mongodb!");
 
-  db.collection('members').drop(function(err,res){
+  var memberCollection = db.collection('members');
+  memberCollection.drop(function(err,res){
     if(err) {
       console.log("error dropping the members");
       throw err;
     }
   });
-  var memberCollection = db.collection('members');
 
-  db.collection('chats').drop(function(err,res){
+  var chatCollection = db.collection('chats',{ capped : true, size : 20000, max : 3 });
+  chatCollection.drop(function(err,res){
     if(err) {
       console.log("error dropping the chats");
       throw err;
     }
   });
-  var chatCollection = db.collection('chats',{ capped : true, size : 20000, max : 3 });
   
   io.on('connection', function(client){
     console.log('client connected!');
