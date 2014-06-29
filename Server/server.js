@@ -26,17 +26,17 @@ console.log('listening on port: ' + port);
 
 app.get('/', function(request, response){
   console.log('fetching index.html...');
-  response.sendfile("/home/ec2-user/app/chat-gwoodroof/Client/index.html");
+  response.sendfile("/opt/hellochat/Client/index.html");
 });
 
 app.get('/style.css', function(request, response){
   console.log('fetching style.css...');
-  response.sendfile("/home/ec2-user/app/chat-gwoodroof/Client/style.css");
+  response.sendfile("/opt/hellochat/Client/style.css");
 });
 
 app.get('/app.js', function(request, response){
   console.log('fetching app.js...');
-  response.sendfile("/home/ec2-user/app/chat-gwoodroof/Client/app.js");
+  response.sendfile("/opt/hellochat/Client/app.js");
 });
 
 io.on('connection', function(client){
