@@ -5,7 +5,22 @@ var MongoClient = require('mongodb').MongoClient;
 
 var port = 3000;
 
-MongoClient.connect('mongodb://localhost/test', function(err, db){
+var config = {
+//    "USER"    : "",
+//    "PASS"    : "",
+    "HOST"    : "107.170.207.4",
+    "PORT"    : "27017",
+    "DATABASE" : "db"
+};
+
+var dbPath  = "mongodb://" +
+//    config.USER + ":" +
+//    config.PASS + "@" +
+    config.HOST + ":"+ 
+    config.PORT + "/"+ 
+    config.DATABASE;
+
+MongoClient.connect(dbPath, function(err, db){
   if(err) throw err;
   console.log("connected to mongodb!");
 
