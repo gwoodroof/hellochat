@@ -10,12 +10,11 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   console.log("connected to mongodb!");
 
   var memberCollection = db.collection('members');
-  
   var chatCollection = db.collection('chats');
   
   io.on('connection', function(client){
     console.log('client connected!');
-    client.emit('alert', { message: 'You are connected.' });
+//    client.emit('alert', { message: 'You are connected.' });
     
     var handle = "";
     
@@ -24,8 +23,8 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
       memberCollection.insert({name:handle},function(err, docs){
         if(err) throw err;
         console.log("inserted: " + handle);
-        client.emit('member-list',memberCollection);
-        client.emit('chat-list', chatCollection);
+        client.emit('member-list', memberCollection.toArray());
+        client.emit('chat-list', chatCollection.toArray());
       });
 
       var chat = {handle:"server",msg:handle + " just joined."};
