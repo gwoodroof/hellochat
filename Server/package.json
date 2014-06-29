@@ -6,10 +6,9 @@
    "dependancies": {
       "express":"~4.4.1",
       "request":"~2.36.1",
-      "mongodb":"*",
+      "mongodb":"~1.4.6",
       "socket.io":"1.0"
    },
    "maybe_laters":{
-      "mongodb":"1.4.6"
    }
 }
