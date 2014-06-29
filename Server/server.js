@@ -20,7 +20,7 @@ var dbPath  = "mongodb://" +
     config.PORT + "/"+ 
     config.DATABASE;
 
-MongoClient.connect(dbPath, function(err, db){
+MongoClient.connect('12.0.0.1', function(err, db){
   if(err) throw err;
   console.log("connected to mongodb!");
 
