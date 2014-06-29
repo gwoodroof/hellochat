@@ -8,7 +8,7 @@ var port = 3000;
 var config = {
 //    "USER"    : "",
 //    "PASS"    : "",
-    "HOST"    : "107.170.207.4",
+    "HOST"    : "12.0.0.1",
     "PORT"    : "27017",
     "DATABASE" : "db"
 };
