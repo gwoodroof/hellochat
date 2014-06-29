@@ -3,7 +3,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 var MongoClient = require('mongodb').MongoClient;
 
-var port = 8080;
+var port = 3000;
 
 MongoClient.connect('mongodb://localhost/test', function(err, db){
   if(err) throw err;
