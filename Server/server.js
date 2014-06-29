@@ -14,7 +14,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   
   io.on('connection', function(client){
     console.log('client connected!');
-//    client.emit('alert', { message: 'You are connected.' });
+    client.emit('alert', { message: 'You are connected.' });
     
     var handle = "";
     
