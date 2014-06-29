@@ -19,13 +19,14 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   });
 */
   var chatCollection = db.collection('chats',{ capped : true, size : 20000, max : 3 });
+/*
   chatCollection.drop(function(err,res){
     if(err) {
       console.log("error dropping the chats");
       throw err;
     }
   });
-  
+*/  
   io.on('connection', function(client){
     console.log('client connected!');
     client.emit('alert', { message: 'You are connected.' });
