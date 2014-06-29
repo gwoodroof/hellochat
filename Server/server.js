@@ -12,10 +12,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   var memberCollection = db.collection('members');
   
   var chatCollection = db.collection('chats');
-  chatCollection.insert({handle:"GW", msg:"Hello Mongo!"}, function(err, docs){
-    if(err) throw err;
-    console.log("insterted GW: Hello Mongo!");
-  });
+  
   io.on('connection', function(client){
     console.log('client connected!');
     client.emit('alert', { message: 'You are connected.' });
@@ -27,6 +24,8 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
       memberCollection.insert({name:handle},function(err, docs){
         if(err) throw err;
         console.log("inserted: " + handle);
+        client.emit('member-list',memberCollection);
+        client.emit('chat-list', chatCollection);
       });
 
       var chat = {handle:"server",msg:handle + " just joined."};
@@ -37,7 +36,11 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
     
     client.on('message', function(chat){
       console.log(chat);
-      io.emit('message', chat);
+      chatCollection.insert({handle:chat.handle, msg:chat.msg}, function(err, docs){
+        if(err) throw err;
+        io.emit('message', chat);
+      });
+
     });
     
     client.on('disconnect', function(){

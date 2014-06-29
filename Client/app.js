@@ -19,8 +19,8 @@ var chatTestArray = [
   var app = angular.module('chat',[]);
   
   var chatController = app.controller('ChatController', function($scope){
-    $scope.members = memberTestArray;
-    $scope.chats = chatTestArray;
+    $scope.members = [];
+    $scope.chats = [];
 
     $scope.member = username;
 
@@ -33,6 +33,18 @@ var chatTestArray = [
     server.on('add-member', function(member){
       console.log("message from server to add: " + member);
       $scope.addMember(member);
+    });
+    
+    server.on('member-list', function(memberList){
+      memberList.forEach(function(member){
+        $scope.addMember(member);
+      });
+    });
+    
+    server.on('chat-list', function(chatList){
+      chatList.forEach(function(chat){
+        $scope.receiveChat(chat);
+      });
     });
 
     $scope.removeMember = function(member){
