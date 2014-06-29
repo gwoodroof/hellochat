@@ -32,11 +32,10 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
         console.log("inserted: " + handle);
         memberCollection.find().toArray(function(err, memberList){
           if(err) throw err;
-          client.emit('member-list', memberList);
-        });
-        chatCollection.find().toArray(function(err, chatList){
-          if(err) throw err;
-          client.emit('chat-list', chatList);
+          chatCollection.find().toArray(function(err, chatList){
+            if(err) throw err;
+            client.emit('welcome', {members: memberLists, chats: chatList});
+          });
         });
       });
 

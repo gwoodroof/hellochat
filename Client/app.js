@@ -50,18 +50,15 @@ var chatController = app.controller('ChatController', function($scope){
     $scope.addMember(member);
   });
   
-  server.on('member-list', function(memberList){
-    memberList.forEach(function(member){
+  server.on('welcome', function(welcome){
+    welcome.members.forEach(function(member){
       $scope.addMember(member.name);
     });
-  });
-  
-  server.on('chat-list', function(chatList){
-    chatList.forEach(function(chat){
+    welcome.chats.forEach(function(chat){
       $scope.receiveChat(chat);
     });
   });
-
+  
   server.on('remove-member', function(member){
     console.log("message from server to remove: " + member);
     $scope.removeMember(member.name);
