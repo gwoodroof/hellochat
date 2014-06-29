@@ -9,6 +9,9 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   if(err) throw err;
   console.log("connected to mongodb!");
 
+  db.collection('members').drop(function(err,res){
+    if(err) throw err;
+  });
   var memberCollection = db.collection('members');
 
   db.collection('chats').drop(function(err,res){
