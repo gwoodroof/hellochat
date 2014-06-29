@@ -34,7 +34,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
           if(err) throw err;
           chatCollection.find().toArray(function(err, chatList){
             if(err) throw err;
-            client.emit('welcome', {members: memberLists, chats: chatList});
+            client.emit('welcome', {members: memberList, chats: chatList});
           });
         });
       });
