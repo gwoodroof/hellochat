@@ -18,7 +18,8 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
     }
   });
 */
-  var chatCollection = db.collection('chats',{ capped : true, size : 20000, max : 3 });
+  //create the collection and limit it to the lesser of ~20KB or 3 documents
+  var chatCollection = db.collection('chats',{ 'capped' : true, 'size' : 20000, 'max' : 3 });
 /*
   chatCollection.drop(function(err,res){
     if(err) {
@@ -43,9 +44,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
           chatCollection.find().toArray(function(err, chatList){
             if(err) throw err;
             client.emit('welcome', {members: memberList, chats: chatList});
-            var chat = {handle:"server",msg:handle + " just joined."};
-            console.log(chat);
-            doMessage(chat);
+            doMessage({handle:"server",msg:handle + " just joined."});
             io.emit('add-member', handle);
           });
         });
@@ -60,13 +59,11 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
     }
     
     client.on('message', function(chat){
-      console.log(chat);
       doMessage(chat);
     });
     
     client.on('disconnect', function(){
       var chat = {handle:"server",msg: handle + " just left."};
-      console.log(chat);
       doMessage(chat);
       memberCollection.remove({name:handle}, function(err, numRemoved){
         console.log("documents removed: " + numRemoved);
