@@ -23,8 +23,8 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
       memberCollection.insert({name:handle},function(err, docs){
         if(err) throw err;
         console.log("inserted: " + handle);
-        client.emit('member-list', memberCollection.toArray());
-        client.emit('chat-list', chatCollection.toArray());
+        client.emit('member-list', memberCollection.find().toArray());
+        client.emit('chat-list', chatCollection.find().toArray());
       });
 
       var chat = {handle:"server",msg:handle + " just joined."};
