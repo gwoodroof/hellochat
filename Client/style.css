@@ -13,6 +13,7 @@
   border-radius: 5px;
   width: 200px;
   vertical-align: top;
+  overflow-y: auto;
 }
 .chatter{
   margin: 10px 0px;
@@ -26,6 +27,13 @@
   border: 1px solid lightgrey;
   border-radius: 5px;
 }
+#messages-box{
+  position: absolute;
+  top: 0px;
+  bottom: 50px;
+  width: 100%;
+  overflow-y: scroll;
+}
 .message{
   margin: 10px 0px;
 }
@@ -36,12 +44,6 @@ ul {
   list-style:none;
   padding:10px;
 }​
-#messages-box{
-  position: absolute;
-  top: 0px;
-  bottom: 50px;
-  overflow-y: scroll;
-}
 #the-form{
   width: 100%;
   position: absolute;
