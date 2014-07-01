@@ -45,7 +45,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
             if(err) throw err;
             client.emit('welcome', {members: memberList, chats: chatList});
             doMessage({handle:"server",msg:handle + " just joined."});
-//            io.emit('add-member', handle);
+            client.broadcast.emit('add-member', handle);
           });
         });
       });
