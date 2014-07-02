@@ -11,7 +11,7 @@ if (username){
 
 var app = angular.module('chat',[]);
 
-var chatController = app.controller('ChatController', function($scope){
+var chatController = app.controller('ChatController', function($scope, $location){
   $scope.members = [];
   $scope.chats = [];
 
@@ -34,6 +34,7 @@ var chatController = app.controller('ChatController', function($scope){
     console.log('calling receiveChat method');
     $scope.chats.push(chat);
     $scope.$digest();
+    $location.hash('draft-chat');
   };
 
   $scope.sendChat = function(chat){
