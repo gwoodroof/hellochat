@@ -34,7 +34,7 @@ var chatController = app.controller('ChatController', function($scope){
     console.log('calling receiveChat method');
     $scope.chats.push(chat);
     $scope.$digest();
-    $('messages-box').animate({scrollTop: 0}, "slow");
+    document.getElementById('messages-box').scrollTop = 0;
   };
 
   $scope.sendChat = function(chat){
