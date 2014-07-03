@@ -57,9 +57,8 @@ var chatController = app.controller('ChatController', function($scope){
     welcome.members.forEach(function(member){
       $scope.addMember(member.name);
     });
-    welcome.chats.forEach(function(chat){
-      $scope.receiveChat(chat);
-    });
+    $scope.chats.push(welcome.chats);
+    $scope.$digest();
   });
   
   server.on('remove-member', function(member){
