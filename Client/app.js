@@ -36,6 +36,7 @@ var chatController = app.controller('ChatController', function($scope){
     console.log('calling receiveChat method');
     $scope.chats.push(chat);
     $scope.$digest();
+//    $('#messages-box').animate({scrollTop: $('#messages-box')[0].scrollHeight}, "fast");
   };
 
   $scope.sendChat = function(chat){
@@ -56,9 +57,13 @@ var chatController = app.controller('ChatController', function($scope){
     welcome.members.forEach(function(member){
       $scope.addMember(member.name);
     });
+    $scope.chats.push(welcome.chats);
+    $scope.$digest();
+/*
     welcome.chats.forEach(function(chat){
       $scope.receiveChat(chat);
     });
+*/
   });
   
   server.on('remove-member', function(member){
