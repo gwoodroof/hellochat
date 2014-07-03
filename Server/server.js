@@ -19,7 +19,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   });
 */
   //create the collection and limit it to the lesser of ~20KB or 3 documents
-  var chatCollection = db.collection('chats',{ 'capped' : true, 'size' : 200, 'max' : 3 });
+  var chatCollection = db.collection('chats',{ 'capped' : true, 'size' : 20, 'max' : 3 });
 /*
   chatCollection.drop(function(err,res){
     if(err) {
