@@ -1,9 +1,7 @@
 var username = "";
-
 while(!username){
   username = prompt("Please enter your name");
 }
-
 $('ul').removeClass('hidden');
 
 var server = io.connect('107.170.207.4:3000'); //PRODUCTION
@@ -16,8 +14,8 @@ var app = angular.module('chat',[]);
 var chatController = app.controller('ChatController', function($scope){
   $scope.members = [];
   $scope.chats = [];
-
   $scope.member = username;
+  $scope.draft = {};
 
   $scope.addMember = function(member){
     console.log('calling addMember method with: ' + member);
@@ -26,7 +24,6 @@ var chatController = app.controller('ChatController', function($scope){
   };
   
   $scope.removeMember = function(member){
-    console.log('calling removeMember method');
     var i = $scope.members.lastIndexOf(member);
     $scope.members.splice(i,1);
     $scope.$digest();
@@ -40,11 +37,8 @@ var chatController = app.controller('ChatController', function($scope){
   };
 
   $scope.sendChat = function(chat){
-    console.log('calling sendChat method');
     chat.handle = username;
-    
     server.emit('message', chat);
-    
     $scope.draft = {};
   };
   
@@ -57,13 +51,11 @@ var chatController = app.controller('ChatController', function($scope){
     welcome.members.forEach(function(member){
       $scope.addMember(member.name);
     });
-    $scope.chats.push(welcome.chats);
-    $scope.$digest();
-/*
+//    $scope.chats.push(welcome.chats);
+//    $scope.$digest();
     welcome.chats.forEach(function(chat){
       $scope.receiveChat(chat);
     });
-*/
   });
   
   server.on('remove-member', function(member){
@@ -75,13 +67,8 @@ var chatController = app.controller('ChatController', function($scope){
     console.log('received message from server: ' + chat.msg);
     $scope.receiveChat(chat);
   });
-
-  $scope.draft = {};
-  
 });
 
 server.on('alert', function (data) {
   alert(data.message);
 });
-
-

@@ -10,24 +10,13 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
   console.log("connected to mongodb!");
 
   var memberCollection = db.collection('members');
-/*
-  memberCollection.drop(function(err,res){
-    if(err) {
-      console.log("error dropping the members");
-      throw err;
-    }
-  });
-*/
+  memberCollection.remove();
+  
   //create the collection and limit it to the lesser of ~20KB or 3 documents
-  var chatCollection = db.collection('chats',{ 'capped' : true, 'size' : 20, 'max' : 3 });
-/*
-  chatCollection.drop(function(err,res){
-    if(err) {
-      console.log("error dropping the chats");
-      throw err;
-    }
-  });
-*/  
+//  var chatCollection = db.collection('chats',{ 'capped' : true, 'size' : 20, 'max' : 3 });
+  var chatCollection = db.collection('chats');
+  chatCollection.remove();
+  
   io.on('connection', function(client){
     console.log('client connected!');
     client.emit('alert', { message: 'You are connected.' });
