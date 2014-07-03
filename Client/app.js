@@ -1,13 +1,15 @@
-var username = prompt("Please enter your name");
+var username = "";
+
+while(!username){
+  username = prompt("Please enter your name");
+}
+
+$('ul').removeClass('hidden');
+
 var server = io.connect('107.170.207.4:3000'); //PRODUCTION
 //var server = io.connect('http://localhost:3000') //TESTING local
 
-if (username){
-  console.log("username: " + username);
-  server.emit('submit-name', username);
-} else {
-  alert("You need to enter a username!");
-}
+server.emit('submit-name', username);
 
 var app = angular.module('chat',[]);
 

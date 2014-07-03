@@ -4,6 +4,9 @@
 #subtitle{
   margin-left: 10px;
 }
+.hidden{
+  display: none;
+}
 #chatters-box{
   position: absolute;
   top: 100px;

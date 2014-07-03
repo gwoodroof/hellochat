@@ -9,13 +9,13 @@
   <h1 id="title">Hello Chat!</h1>
   <p id="subtitle">Built on the MEAN stack + socket.io</p>
   <div id="chatters-box">
-    <ul>
+    <ul class="hidden">
       <li class="chatter" ng-repeat="member in members track by $index">{{member}}</li>
     </ul>
   </div>
   <div id="chat-box">
     <div id="messages-box">
-      <ul>
+      <ul class="hidden">
         <li class="message" ng-repeat="chat in chats track by $index">
           <span>{{chat.handle + ": "}}</span>
           <span>{{chat.msg}}</span>
@@ -30,7 +30,7 @@
       <input id="input" type="text" placeholder="Type here and hit [enter]" ng-model="draft.msg">
     </form>
   </div>
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
   <script type="text/javascript" src="app.js"></script>
 </body>
