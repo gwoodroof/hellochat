@@ -35,6 +35,8 @@ var chatController = app.controller('ChatController', function($scope){
     $scope.$digest();
 //    $('#messages-box').animate({scrollTop: $('#messages-box')[0].scrollHeight}, "fast");
     var scrollBox = document.getElementById("messages-box");
+    console.log('scrollBox.scrollTop: ' + scrollBox.scrollTop);
+    console.log('scrollBox.scrollHeight: ' + scrollBox.scrollHeight);
     scrollBox.scrollTop = scrollBox.scrollHeight;
   };
 
