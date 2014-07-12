@@ -1,4 +1,6 @@
 hellochat
 =========
 
-linked to digital ocean
+Simple chat application built on the MEAN stack + socket.io
+
+Hosted on DigitalOcean
