@@ -70,6 +70,6 @@ var chatController = app.controller('ChatController', function($scope){
   });
 });
 
-server.on('alert', function (data) {
-  alert(data.message);
-});
+//server.on('alert', function (data) {
+//  alert(data.message);
+//});
