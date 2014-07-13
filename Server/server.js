@@ -47,8 +47,29 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
     var doMessage = function(chat){
       chatCollection.insert({handle:chat.handle, msg:chat.msg}, function(err, docs){
         if(err) throw err;
+        console.log('point A');
         io.emit('message', chat);
+        chatCollection.count(function(err, count){
+          if(err) throw err;
+          console.log('point B');
+          if(count>20) {
+            chatCollection.find().toArray(function(err, chatList){
+              if(err) throw err;
+              console.log('point C');
+              while(chatList.length > 10) {
+                console.log('point D');
+                chatCollection.findAndRemove(chatList[0], function(err, doc){
+                  if(err) throw err;
+                  console.log('point E');
+                  chatList.shift();
+                });
+              }
+              console.log('point F');
+            });
+          }
+        });
       });
+      console.log('point G');
     }
     
     client.on('message', function(chat){
