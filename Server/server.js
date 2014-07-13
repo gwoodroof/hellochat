@@ -59,7 +59,7 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
               console.log('point C');
               while(chatList.length > 10) {
                 console.log('chatList.length: ' + chatList.length);
-                chatCollection.remove({handle:'GW'}, {'single':true}, function(err, doc){
+                chatCollection.remove({'handle':'GW'}, {'single':true}, function(err, doc){
                   if(err) throw err;
                   console.log('point E');
                   chatList.shift();
