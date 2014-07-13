@@ -50,7 +50,6 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
         console.log('point A');
         io.emit('message', chat);
 
-/*
         chatCollection.count(function(err, count){
           if(err) throw err;
           console.log('point B');
@@ -70,9 +69,8 @@ MongoClient.connect('mongodb://127.0.0.1/db', function(err, db){
             });
           }
         });
-*/
       });
-//      console.log('point G');
+      console.log('point G');
     }
     
     client.on('message', function(chat){
